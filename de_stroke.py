@@ -38,19 +38,6 @@ st.title('Machine Learning Application for Predicting One-year Death')
 
 
 # conf
-# st.sidebar.markdown('## Variables')
-# #Age = st.sidebar.selectbox('Age',('<55','>=55'),index=0)
-# Sex = st.sidebar.selectbox('Sex',('Female','Male'),index=0)
-# T = st.sidebar.selectbox("T stage",('T1','T2','T3','T4'))
-# HGB = st.sidebar.slider("HGB", 0, 200, value=100, step=1)
-# N = st.sidebar.selectbox("N stage",('N0','N1','N2','N3'))
-# #Race = st.sidebar.selectbox("Race",('American Indian/Alaska Native','Asian or Pacific Islander','Black','White'),index=3)
-# Grade = st.sidebar.selectbox("Grade",('Ⅰ','Ⅱ','Ⅲ','Ⅳ'),index=0)
-# Laterality =  st.sidebar.selectbox("Laterality",('Left','Right','Bilateral'))
-# Histbehav =  st.sidebar.selectbox("Histbehav",('Adenocarcinoma','Squamous cell carcinoma'
-#                                                ,'Adenosquamous carcinoma','Large cell carcinoma','other'))
-# Chemotherapy = st.sidebar.selectbox("Chemotherapy",('No','Yes'))
-#Marital_status = st.sidebar.selectbox("Marital status",('Married','Unmarried'))
 col1, col2, col3 = st.columns(3)
 NOS = col1.selectbox("Number of stroke lesions",('Single stroke lesion','Multiple stroke lesions'))
 FBG = col2.number_input('FBG (mmol/L)',value=5.3)
@@ -58,19 +45,7 @@ HBALC = col3.number_input('HBALC (%)',value=5.6)
 MB = col1.number_input("MB (ng/mL)",value=97.7)
 Anticoagulation = col2.selectbox("Anticoagulation",('No','Yes'))
 SS = col3.selectbox("Stroke severity",('Mild stroke','Moderate to severe stroke'))
-# RoPE = col1.number_input('RoPE',step=1,value=4)
-# SD = col2.selectbox("Stroke distribution",('Anterior circulation','Posterior circulation','Anterior/posterior circulation'))
-# SOH = col3.selectbox("Side of hemisphere",('Left','Right','Bilateral'))
-# NOS = col1.selectbox("Site of stroke lesion",('Cortex','Cortex-subcortex','Subcortex','Brainstem','Cerebellum'))
-# Ddimer = col2.number_input('D-dimer (ng/mL)',value=174)
-# BNP = col3.number_input('BNP (pg/mL)',value=93)
-# tuberculosis = col1.selectbox("tuberculosis",('No','Yes'))
-# ALP = col2.number_input('ALP',value=60)
-# calcium = col2.number_input('calcium',value=2.20)
-# hemoglobin = col2.number_input('hemoglobin',value=100)
-# Mean_corpuscular_volume = col3.number_input('Mean corpuscular volume',value=90.00)
-# absolute_value_of_lymphocytes = col3.number_input('absolute value of lymphocytes',value=1.50)
-# Fibrinogen = col3.number_input('Fibrinogen',value=3.50)
+
 
 # str_to_
 map = {'Left':0,'Right':1,'Bilateral':2,
@@ -82,16 +57,10 @@ map = {'Left':0,'Right':1,'Bilateral':2,
 NOS =map[NOS]
 Anticoagulation =map[Anticoagulation]
 SS =map[SS]
-# N =map[N]
-# Laterality =map[Laterality]
-# Histbehav =map[Histbehav]
-# Chemotherapy =map[Chemotherapy]
+
 
 # 数据读取，特征标注
 thyroid_train = pd.read_csv('train.csv', low_memory=False)
-# thyroid_train['fracture'] = thyroid_train['fracture'].apply(lambda x : +1 if x==1 else 0)
-#thyroid_test = pd.read_csv('test.csv', low_memory=False)
-#thyroid_test['BM'] = thyroid_test['BM'].apply(lambda x : +1 if x==1 else 0)
 features=[  'NOS', 'FBG',  'HBALC', 'MB', 'Anticoagulation','SS']
 target='Status'
 
@@ -102,8 +71,8 @@ X_ros, y_ros = ros.fit_resample(thyroid_train[features], thyroid_train[target])
 #train and predict
 RF = sklearn.ensemble.RandomForestClassifier(n_estimators=21,criterion='entropy',max_features='log2',max_depth=3,random_state=12)
 RF.fit(X_ros, y_ros)
-# XGB = XGBClassifier(random_state=32,max_depth=3,n_estimators=9)
-# XGB.fit(X_ros, y_ros)
+
+
 #读之前存储的模型
 
 #with open('RF.pickle', 'rb') as f:
@@ -127,23 +96,4 @@ if st.button('Predict'):
     if result == 'Low Risk':
         st.balloons()
     st.markdown('## Probability:  '+str(prob)+'%')
-#st.markdown('## The risk of bone metastases is '+str(prob/0.0078*1000//1/1000)+' times higher than the average risk .')
-
-#排版占行
-
-
-
-# st.title("")
-# st.title("")
-# st.title("")
-# st.title("")
-#st.warning('This is a warning')
-#st.error('This is an error')
-
-#st.info('Information of the model: Auc: 0. ;Accuracy: 0. ;Sensitivity(recall): 0. ;Specificity :0. ')
-#st.success('Affiliation: The First Affiliated Hospital of Nanchang University, Nanchnag university. ')
-
-
-
-
-
+   
