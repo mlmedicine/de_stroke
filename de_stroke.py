@@ -40,9 +40,9 @@ st.title('Machine Learning Application for Predicting One-year Death')
 # conf
 col1, col2, col3 = st.columns(3)
 NOS = col1.selectbox("Number of stroke lesions",('Single stroke lesion','Multiple stroke lesions'))
-FBG = col2.number_input('FBG (mmol/L)',format="%.1f",value=5.3)
-HBALC = col3.number_input('HBALC (%)',format="%.1f",value=5.6)
-MB = col1.number_input("MB (ng/mL)",format="%.1f",value=97.7)
+FBG = col2.number_input('FBG (mmol/L)',step=0.1,format="%.1f",value=5.3)
+HBALC = col3.number_input('HBALC (%)',step=0.1,format="%.1f",value=5.6)
+MB = col1.number_input("MB (ng/mL)",step=0.1,format="%.1f",value=97.7)
 Anticoagulation = col2.selectbox("Anticoagulation",('No','Yes'))
 SS = col3.selectbox("Stroke severity",('Mild stroke','Moderate to severe stroke'))
 
